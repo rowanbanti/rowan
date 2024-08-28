@@ -14,7 +14,7 @@
             background: url('banti.jpg') no-repeat center center fixed;
             background-size: cover;
             color: #FFF;
-            font-family: 'Poppins', sans-serif; /* استخدام خط جديد */
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
         }
@@ -29,16 +29,17 @@
 
         .bubble {
             background-color: rgba(255, 255, 255, 0.2);
-            padding: 30px; /* زيادة المساحة الداخلية */
-            border-radius: 30px; /* تحسين انحناء الحواف */
+            padding: 30px;
+            border-radius: 30px;
             border: 2px solid rgba(255, 255, 255, 0.5);
             display: flex;
             flex-direction: column;
             align-items: center;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4); /* زيادة الظل */
-            backdrop-filter: blur(10px); /* زيادة التمويه */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
             animation: fadeIn 1.5s ease-in-out;
             max-width: 300px;
+            position: relative; /* للسماح بوضع الأيقونة داخل الفقاعة */
         }
 
         .profile-picture {
@@ -76,16 +77,28 @@
             background-color: #ff4081;
             color: #FFF;
             border: none;
-            border-radius: 30px; /* تحسين الشكل الدائري */
-            box-shadow: 0 4px 15px rgba(255, 64, 129, 0.2); /* إضافة ظل للأزرار */
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(255, 64, 129, 0.2);
             font-size: 1.2rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease;
+            margin-bottom: 10px;
         }
 
         .play-button:hover, .mute-button:hover {
-            background-color: #e0356d;
             transform: scale(1.1);
+        }
+
+        .whatsapp-icon {
+            width: 40px;
+            height: 40px;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-icon:hover {
+            transform: scale(1.2);
         }
     </style>
 </head>
@@ -96,6 +109,11 @@
             <p class="hack">هٌنا تقع العجائب السبع علي هيئة أمرأه 💗💎</p>
             <button class="play-button" id="playButton">Play Sound</button>
             <button class="mute-button" id="muteButton">Mute Sound</button>
+            
+            <!-- إضافة أيقونة واتساب مع رسالة مخصصة -->
+            <a href="https://wa.me/201159493206?text=Ilove you 💗" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
+            </a>
         </div>
     </div>
     <div class="popup" id="popup">💗💎</div>
