@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rewan Banti❤️‍🔥</title>
+    <link rel="icon" href="path-to-your-favicon2.ico" type="image/x-icon">
+
+    <!-- إضافة خطوط Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background: url('banti.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #FFF;
+            font-family: 'Poppins', sans-serif; /* استخدام خط جديد */
+            margin: 0;
+            padding: 0;
+        }
+
+        .hack-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .bubble {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 30px; /* زيادة المساحة الداخلية */
+            border-radius: 30px; /* تحسين انحناء الحواف */
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4); /* زيادة الظل */
+            backdrop-filter: blur(10px); /* زيادة التمويه */
+            animation: fadeIn 1.5s ease-in-out;
+            max-width: 300px;
+        }
+
+        .profile-picture {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            animation: zoomIn 1s ease-in-out;
+        }
+
+        .hack {
+            font-size: 24px;
+            color: #FFF;
+            animation: slideUp 1.5s ease-in-out;
+            margin-bottom: 20px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .play-button, .mute-button {
+            padding: 15px 30px;
+            background-color: #ff4081;
+            color: #FFF;
+            border: none;
+            border-radius: 30px; /* تحسين الشكل الدائري */
+            box-shadow: 0 4px 15px rgba(255, 64, 129, 0.2); /* إضافة ظل للأزرار */
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .play-button:hover, .mute-button:hover {
+            background-color: #e0356d;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="hack-container">
+        <div class="bubble">
+            <img src="profile.jpg" alt="Profile Picture" class="profile-picture">
+            <p class="hack">هٌنا تقع العجائب السبع علي هيئة أمرأه 💗💎</p>
+            <button class="play-button" id="playButton">Play Sound</button>
+            <button class="mute-button" id="muteButton">Mute Sound</button>
+        </div>
+    </div>
+    <div class="popup" id="popup">💗💎</div>
+    <audio id="welcomeAudio" src="rowan.m4a" type="audio/mpeg"></audio>
+    <script>
+        const playButton = document.getElementById('playButton');
+        const muteButton = document.getElementById('muteButton');
+        const audio = document.getElementById('welcomeAudio');
+
+        playButton.addEventListener('click', function() {
+            audio.play();
+        });
+
+        muteButton.addEventListener('click', function() {
+            audio.pause();
+            audio.currentTime = 0;
+        });
+    </script>
+</body>
+</html>
