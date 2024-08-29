@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rewan Banti❤️‍🔥</title>
     <link rel="icon" href="path-to-your-favicon2.ico" type="image/x-icon">
-
-    <!-- إضافة خطوط Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
 
     <style>
@@ -17,6 +15,7 @@
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
+            animation: backgroundAnimation 10s infinite alternate; /* حركة للخلفية */
         }
 
         .hack-container {
@@ -25,36 +24,45 @@
             align-items: center;
             height: 100vh;
             text-align: center;
+            backdrop-filter: blur(5px);
         }
 
         .bubble {
-            background-color: rgba(255, 255, 255, 0.2);
-            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 40px;
             border-radius: 30px;
             border: 2px solid rgba(255, 255, 255, 0.5);
             display: flex;
             flex-direction: column;
             align-items: center;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(10px);
-            animation: fadeIn 1.5s ease-in-out;
-            max-width: 300px;
-            position: relative; /* للسماح بوضع الأيقونة داخل الفقاعة */
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            animation: fadeIn 2s ease-in-out;
+            max-width: 350px;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .bubble:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.7);
         }
 
         .profile-picture {
-            width: 100px;
-            height: 100px;
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             animation: zoomIn 1s ease-in-out;
+            border: 2px solid #FFF;
         }
 
         .hack {
-            font-size: 24px;
+            font-size: 26px;
             color: #FFF;
             animation: slideUp 1.5s ease-in-out;
             margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255, 64, 129, 0.7);
         }
 
         @keyframes fadeIn {
@@ -72,33 +80,40 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
+        @keyframes backgroundAnimation {
+            from { filter: hue-rotate(0deg); }
+            to { filter: hue-rotate(360deg); }
+        }
+
         .play-button, .mute-button {
             padding: 15px 30px;
-            background-color: #ff4081;
+            background: linear-gradient(45deg, #ff4081, #ff80ab);
             color: #FFF;
             border: none;
             border-radius: 30px;
-            box-shadow: 0 4px 15px rgba(255, 64, 129, 0.2);
+            box-shadow: 0 4px 15px rgba(255, 64, 129, 0.4);
             font-size: 1.2rem;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             margin-bottom: 10px;
         }
 
         .play-button:hover, .mute-button:hover {
             transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 64, 129, 0.6);
         }
 
         .whatsapp-icon {
-            width: 40px;
-            height: 40px;
-            margin-top: 10px;
+            width: 45px;
+            height: 45px;
+            margin-top: 15px;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .whatsapp-icon:hover {
             transform: scale(1.2);
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.5);
         }
     </style>
 </head>
@@ -134,3 +149,4 @@
     </script>
 </body>
 </html>
+
