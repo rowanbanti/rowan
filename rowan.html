@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rewan Banti❤️‍🔥</title>
     <link rel="icon" href="path-to-your-favicon2.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
         body {
@@ -15,7 +15,9 @@
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            animation: backgroundAnimation 10s infinite alternate; /* حركة للخلفية */
+            animation: backgroundAnimation 10s infinite alternate;
+            overflow-x: hidden;
+            position: relative;
         }
 
         .hack-container {
@@ -25,11 +27,13 @@
             height: 100vh;
             text-align: center;
             backdrop-filter: blur(5px);
+            position: relative;
+            z-index: 1;
         }
 
         .bubble {
             background-color: rgba(255, 255, 255, 0.1);
-            padding: 40px;
+            padding: 50px; /* تكبير حجم الفقاعة */
             border-radius: 30px;
             border: 2px solid rgba(255, 255, 255, 0.5);
             display: flex;
@@ -37,15 +41,21 @@
             align-items: center;
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(15px);
-            animation: fadeIn 2s ease-in-out;
-            max-width: 350px;
+            animation: fadeIn 2s ease-in-out, moveUpDown 4s ease-in-out infinite;
+            max-width: 400px; /* تكبير العرض */
             position: relative;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            filter: none;
         }
 
         .bubble:hover {
             transform: scale(1.05);
             box-shadow: 0 0 40px rgba(255, 255, 255, 0.7);
+        }
+
+        @keyframes moveUpDown {
+            0%, 100% { transform: translateY(-10px); }
+            50% { transform: translateY(10px); }
         }
 
         .profile-picture {
@@ -55,14 +65,21 @@
             margin-bottom: 20px;
             animation: zoomIn 1s ease-in-out;
             border: 2px solid #FFF;
+            position: relative;
+            filter: none;
         }
 
         .hack {
-            font-size: 26px;
+            font-size: 28px;
+            font-family: 'Dancing Script', cursive;
             color: #FFF;
-            animation: slideUp 1.5s ease-in-out;
+            animation: typing 3s steps(40, end), blink-caret .75s step-end infinite;
             margin-bottom: 20px;
             text-shadow: 0 0 10px rgba(255, 64, 129, 0.7);
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: .15em solid #ff4081;
+            filter: none;
         }
 
         @keyframes fadeIn {
@@ -75,14 +92,19 @@
             to { transform: scale(1); }
         }
 
-        @keyframes slideUp {
-            from { transform: translateY(100px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #ff4081; }
         }
 
         @keyframes backgroundAnimation {
             from { filter: hue-rotate(0deg); }
-            to { filter: hue-rotate(360deg); }
+            to { filter: hue-rotate(0deg); }
         }
 
         .play-button, .mute-button {
@@ -96,6 +118,7 @@
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             margin-bottom: 10px;
+            filter: none;
         }
 
         .play-button:hover, .mute-button:hover {
@@ -103,17 +126,46 @@
             box-shadow: 0 6px 20px rgba(255, 64, 129, 0.6);
         }
 
-        .whatsapp-icon {
-            width: 45px;
-            height: 45px;
-            margin-top: 15px;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .message-input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #FFF;
+            font-size: 1rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            outline: none;
         }
 
-        .whatsapp-icon:hover {
-            transform: scale(1.2);
-            box-shadow: 0 0 20px rgba(37, 211, 102, 0.5);
+        .send-button {
+            padding: 10px 20px;
+            background-color: transparent;
+            color: #ff4081;
+            border: 2px solid #ff4081;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin-bottom: 10px;
+        }
+
+        .send-button:hover {
+            background-color: #ff4081;
+            color: #FFF;
+        }
+
+        .feedback-message {
+            color: #ff4081;
+            font-size: 1rem;
+            margin-top: 10px;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .feedback-message.visible {
+            opacity: 1;
         }
     </style>
 </head>
@@ -121,14 +173,16 @@
     <div class="hack-container">
         <div class="bubble">
             <img src="profile.jpg" alt="Profile Picture" class="profile-picture">
-            <p class="hack">هٌنا تقع العجائب السبع علي هيئة أمرأه 💗💎</p>
+            <p class="hack">طال الغياب وهواك غلاب.🤍🫂</p>
             <button class="play-button" id="playButton">Play Sound</button>
             <button class="mute-button" id="muteButton">Mute Sound</button>
+
+            <!-- حقل الإدخال وزر الإرسال -->
+            <input type="text" id="userMessage" class="message-input" placeholder="قم بكتابة ما تفكر به...">
+            <button class="send-button" id="sendButton">إرسال</button>
             
-            <!-- إضافة أيقونة واتساب مع رسالة مخصصة -->
-            <a href="https://wa.me/201159493602?text=Ilove you 💗" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
-            </a>
+            <!-- رسالة التأكيد التفاعلية -->
+            <p id="feedbackMessage" class="feedback-message">تم إرسال رسالتك ياوزه! 💌</p>
         </div>
     </div>
     <div class="popup" id="popup">💗💎</div>
@@ -136,6 +190,8 @@
     <script>
         const playButton = document.getElementById('playButton');
         const muteButton = document.getElementById('muteButton');
+        const sendButton = document.getElementById('sendButton');
+        const feedbackMessage = document.getElementById('feedbackMessage');
         const audio = document.getElementById('welcomeAudio');
 
         playButton.addEventListener('click', function() {
@@ -146,7 +202,28 @@
             audio.pause();
             audio.currentTime = 0;
         });
+
+        sendButton.addEventListener('click', function() {
+            const message = document.getElementById('userMessage').value;
+            if (message) {
+                const telegramBotToken = '6428071347:AAHP1yP2bZFkKB_82pBcseiH4Dgu-EVtEAU';
+                const telegramChatId = '5318149339';
+                const telegramApiUrl = `https://api.telegram.org/bot${telegramBotToken}/sendMessage?chat_id=${telegramChatId}&text=${encodeURIComponent(message)}`;
+
+                fetch(telegramApiUrl)
+                    .then(response => {
+                        feedbackMessage.textContent = "تم إرسال رسالتك! 💌";
+                        feedbackMessage.classList.add('visible');
+                    })
+                    .catch(error => {
+                        feedbackMessage.textContent = "حدث خطأ. حاول مرة أخرى.";
+                        feedbackMessage.classList.add('visible');
+                    });
+            } else {
+                feedbackMessage.textContent = "يرجى كتابة رسالة.";
+                feedbackMessage.classList.add('visible');
+            }
+        });
     </script>
 </body>
 </html>
-
