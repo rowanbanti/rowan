@@ -206,7 +206,7 @@
     <div class="hack-container">
         <div class="bubble">
             <img src="profile.jpg" alt="Profile Picture" class="profile-picture">
-            <p class="hack">طال الغياب وهواك غلاب.🤍🫂</p>
+            <p class="hack" id="hackMessage">طال الغياب وهواك غلاب.🤍🫂</p>
             <button class="play-button" id="playButton">Play Sound</button>
             <button class="mute-button" id="muteButton">Mute Sound</button>
 
@@ -223,21 +223,31 @@
     </div>
     <div class="popup" id="popup">💗💎</div>
     <audio id="welcomeAudio" src="rowan.m4a" type="audio/mpeg"></audio>
+    <audio id="darkModeAudio" src="dark-mode-sound.mp3" type="audio/mpeg"></audio> <!-- مقطع صوتي لوضع Dark Mode -->
+    
     <script>
         const playButton = document.getElementById('playButton');
         const muteButton = document.getElementById('muteButton');
         const darkModeButton = document.getElementById('darkModeButton');
         const sendButton = document.getElementById('sendButton');
         const feedbackMessage = document.getElementById('feedbackMessage');
+        const hackMessage = document.getElementById('hackMessage'); // العنصر الجديد
         const audio = document.getElementById('welcomeAudio');
+        const darkModeAudio = document.getElementById('darkModeAudio');
 
         playButton.addEventListener('click', function() {
-            audio.play();
+            if (document.body.classList.contains('dark-mode')) {
+                darkModeAudio.play();
+            } else {
+                audio.play();
+            }
         });
 
         muteButton.addEventListener('click', function() {
             audio.pause();
             audio.currentTime = 0;
+            darkModeAudio.pause();
+            darkModeAudio.currentTime = 0;
         });
 
         darkModeButton.addEventListener('click', function() {
@@ -246,9 +256,17 @@
             document.querySelectorAll('.play-button, .mute-button, .dark-mode-button, .message-input, .send-button').forEach(function(el) {
                 el.classList.toggle('dark-mode');
             });
+
+            // تغيير النص عند التبديل لوضع Dark Mode
+            if (document.body.classList.contains('dark-mode')) {
+                hackMessage.textContent = "وهنا تنتهي قصتي معك ! 🖤";
+            } else {
+                hackMessage.textContent = "طال الغياب وهواك غلاب.🤍🫂";
+            }
         });
         
         sendButton.addEventListener('click', function() {
+            sendButton.disabled = true; // تعطيل الزر
             const message = document.getElementById('userMessage').value;
             if (message) {
                 const telegramBotToken = '6428071347:AAHP1yP2bZFkKB_82pBcseiH4Dgu-EVtEAU';
@@ -259,14 +277,19 @@
                     .then(response => {
                         feedbackMessage.textContent = "تم إرسال رسالتك! 💌";
                         feedbackMessage.classList.add('visible');
+                        setTimeout(() => feedbackMessage.classList.remove('visible'), 3000); // إشعار مؤقت
                     })
                     .catch(error => {
                         feedbackMessage.textContent = "حدث خطأ. حاول مرة أخرى.";
                         feedbackMessage.classList.add('visible');
+                    })
+                    .finally(() => {
+                        sendButton.disabled = false; // إعادة تمكين الزر
                     });
             } else {
                 feedbackMessage.textContent = "يرجى كتابة رسالة.";
                 feedbackMessage.classList.add('visible');
+                sendButton.disabled = false; // إعادة تمكين الزر
             }
         });
     </script>
