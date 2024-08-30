@@ -33,7 +33,7 @@
 
         .bubble {
             background-color: rgba(255, 255, 255, 0.1);
-            padding: 50px; /* تكبير حجم الفقاعة */
+            padding: 50px;
             border-radius: 30px;
             border: 2px solid rgba(255, 255, 255, 0.5);
             display: flex;
@@ -42,7 +42,7 @@
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(15px);
             animation: fadeIn 2s ease-in-out, moveUpDown 4s ease-in-out infinite;
-            max-width: 400px; /* تكبير العرض */
+            max-width: 400px;
             position: relative;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             filter: none;
@@ -107,7 +107,7 @@
             to { filter: hue-rotate(0deg); }
         }
 
-        .play-button, .mute-button {
+        .play-button, .mute-button, .dark-mode-button {
             padding: 15px 30px;
             background: linear-gradient(45deg, #ff4081, #ff80ab);
             color: #FFF;
@@ -121,7 +121,7 @@
             filter: none;
         }
 
-        .play-button:hover, .mute-button:hover {
+        .play-button:hover, .mute-button:hover, .dark-mode-button:hover {
             transform: scale(1.1);
             box-shadow: 0 6px 20px rgba(255, 64, 129, 0.6);
         }
@@ -167,6 +167,39 @@
         .feedback-message.visible {
             opacity: 1;
         }
+
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+            background-image: url('dark-background.jpg'); /* خلفية Dark Mode */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .bubble.dark-mode {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .play-button.dark-mode, .mute-button.dark-mode, .dark-mode-button.dark-mode {
+            background: linear-gradient(45deg, #212121, #424242);
+            box-shadow: 0 4px 15px rgba(33, 33, 33, 0.4);
+        }
+
+        .message-input.dark-mode {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .send-button.dark-mode {
+            color: #e0e0e0;
+            border-color: #616161;
+        }
+
+        .send-button.dark-mode:hover {
+            background-color: #616161;
+        }
     </style>
 </head>
 <body>
@@ -181,6 +214,9 @@
             <input type="text" id="userMessage" class="message-input" placeholder="قم بكتابة ما تفكر به...">
             <button class="send-button" id="sendButton">إرسال</button>
             
+            <!-- زر Dark Mode بعد زر الإرسال -->
+            <button class="dark-mode-button" id="darkModeButton">Dark Mode</button>
+
             <!-- رسالة التأكيد التفاعلية -->
             <p id="feedbackMessage" class="feedback-message">تم إرسال رسالتك ياوزه! 💌</p>
         </div>
@@ -190,6 +226,7 @@
     <script>
         const playButton = document.getElementById('playButton');
         const muteButton = document.getElementById('muteButton');
+        const darkModeButton = document.getElementById('darkModeButton');
         const sendButton = document.getElementById('sendButton');
         const feedbackMessage = document.getElementById('feedbackMessage');
         const audio = document.getElementById('welcomeAudio');
@@ -203,6 +240,14 @@
             audio.currentTime = 0;
         });
 
+        darkModeButton.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            document.querySelector('.bubble').classList.toggle('dark-mode');
+            document.querySelectorAll('.play-button, .mute-button, .dark-mode-button, .message-input, .send-button').forEach(function(el) {
+                el.classList.toggle('dark-mode');
+            });
+        });
+        
         sendButton.addEventListener('click', function() {
             const message = document.getElementById('userMessage').value;
             if (message) {
