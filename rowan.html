@@ -251,19 +251,21 @@
         });
 
         darkModeButton.addEventListener('click', function() {
-            document.body.classList.toggle('dark-mode');
-            document.querySelector('.bubble').classList.toggle('dark-mode');
-            document.querySelectorAll('.play-button, .mute-button, .dark-mode-button, .message-input, .send-button').forEach(function(el) {
-                el.classList.toggle('dark-mode');
-            });
+    document.body.classList.toggle('dark-mode');
+    document.querySelector('.bubble').classList.toggle('dark-mode');
+    document.querySelectorAll('.play-button, .mute-button, .dark-mode-button, .message-input, .send-button').forEach(function(el) {
+        el.classList.toggle('dark-mode');
+    });
 
-            // تغيير النص عند التبديل لوضع Dark Mode
-            if (document.body.classList.contains('dark-mode')) {
-                hackMessage.textContent = "وهنا تنتهي قصتي معك ! 🖤";
-            } else {
-                hackMessage.textContent = "طال الغياب وهواك غلاب.🤍🫂";
-            }
-        });
+    // تغيير النص عند التبديل لوضع Dark Mode
+    if (document.body.classList.contains('dark-mode')) {
+        hackMessage.textContent = "وهنا تنتهي قصتي معك ! 🖤";
+        document.querySelector('.profile-picture').src = 'dark-profile.jpg'; // تغيير صورة البروفايل
+    } else {
+        hackMessage.textContent = "طال الغياب وهواك غلاب.🤍🫂";
+        document.querySelector('.profile-picture').src = 'profile.jpg'; // استعادة صورة البروفايل الأصلية
+    }
+});
         
         sendButton.addEventListener('click', function() {
             sendButton.disabled = true; // تعطيل الزر
