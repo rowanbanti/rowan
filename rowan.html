@@ -48,16 +48,6 @@
             filter: none;
         }
 
-        .bubble:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 40px rgba(255, 255, 255, 0.7);
-        }
-
-        @keyframes moveUpDown {
-            0%, 100% { transform: translateY(-10px); }
-            50% { transform: translateY(10px); }
-        }
-
         .profile-picture {
             width: 110px;
             height: 110px;
@@ -73,12 +63,7 @@
             font-size: 28px;
             font-family: 'Dancing Script', cursive;
             color: #FFF;
-            animation: typing 3s steps(40, end), blink-caret .75s step-end infinite;
-            margin-bottom: 20px;
             text-shadow: 0 0 10px rgba(255, 64, 129, 0.7);
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: .15em solid #ff4081;
             filter: none;
         }
 
@@ -92,22 +77,12 @@
             to { transform: scale(1); }
         }
 
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
+        @keyframes moveUpDown {
+            0%, 100% { transform: translateY(-10px); }
+            50% { transform: translateY(10px); }
         }
 
-        @keyframes blink-caret {
-            from, to { border-color: transparent; }
-            50% { border-color: #ff4081; }
-        }
-
-        @keyframes backgroundAnimation {
-            from { filter: hue-rotate(0deg); }
-            to { filter: hue-rotate(0deg); }
-        }
-
-        .play-button, .mute-button, .dark-mode-button {
+        .play-button, .mute-button, .dark-mode-button, .record-button, .send-button {
             padding: 15px 30px;
             background: linear-gradient(45deg, #ff4081, #ff80ab);
             color: #FFF;
@@ -116,12 +91,12 @@
             box-shadow: 0 4px 15px rgba(255, 64, 129, 0.4);
             font-size: 1.2rem;
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
             margin-bottom: 10px;
             filter: none;
         }
 
-        .play-button:hover, .mute-button:hover, .dark-mode-button:hover {
+        .play-button:hover, .mute-button:hover, .dark-mode-button:hover, .record-button:hover, .send-button:hover {
             transform: scale(1.1);
             box-shadow: 0 6px 20px rgba(255, 64, 129, 0.6);
         }
@@ -139,23 +114,6 @@
             outline: none;
         }
 
-        .send-button {
-            padding: 10px 20px;
-            background-color: transparent;
-            color: #ff4081;
-            border: 2px solid #ff4081;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            margin-bottom: 10px;
-        }
-
-        .send-button:hover {
-            background-color: #ff4081;
-            color: #FFF;
-        }
-
         .feedback-message {
             color: #ff4081;
             font-size: 1rem;
@@ -171,7 +129,7 @@
         body.dark-mode {
             background-color: #121212;
             color: #e0e0e0;
-            background-image: url('dark-background.jpg'); /* خلفية Dark Mode */
+            background-image: url('dark-background.jpg');
             background-size: cover;
             background-position: center;
         }
@@ -182,7 +140,7 @@
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
         }
 
-        .play-button.dark-mode, .mute-button.dark-mode, .dark-mode-button.dark-mode {
+        .play-button.dark-mode, .mute-button.dark-mode, .dark-mode-button.dark-mode, .record-button.dark-mode, .send-button.dark-mode {
             background: linear-gradient(45deg, #212121, #424242);
             box-shadow: 0 4px 15px rgba(33, 33, 33, 0.4);
         }
@@ -200,41 +158,58 @@
         .send-button.dark-mode:hover {
             background-color: #616161;
         }
+
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+            0% { transform: translate(0); }
+            25% { transform: translate(-5px); }
+            50% { transform: translate(5px); }
+            75% { transform: translate(-5px); }
+            100% { transform: translate(0); }
+        }
     </style>
 </head>
 <body>
     <div class="hack-container">
         <div class="bubble">
-            <img src="profile.jpg" alt="Profile Picture" class="profile-picture">
+            <img src="profile.jpg" alt="Profile Picture" class="profile-picture" id="profilePicture">
             <p class="hack" id="hackMessage">طال الغياب وهواك غلاب.🤍🫂</p>
             <button class="play-button" id="playButton">Play Sound</button>
             <button class="mute-button" id="muteButton">Mute Sound</button>
 
-            <!-- حقل الإدخال وزر الإرسال -->
             <input type="text" id="userMessage" class="message-input" placeholder="قم بكتابة ما تفكر به...">
             <button class="send-button" id="sendButton">إرسال</button>
-            
-            <!-- زر Dark Mode بعد زر الإرسال -->
             <button class="dark-mode-button" id="darkModeButton">Dark Mode</button>
+            <button class="record-button" id="recordButton">Record Voice</button>
 
-            <!-- رسالة التأكيد التفاعلية -->
             <p id="feedbackMessage" class="feedback-message">تم إرسال رسالتك ياوزه! 💌</p>
         </div>
     </div>
+
     <div class="popup" id="popup">💗💎</div>
     <audio id="welcomeAudio" src="rowan.m4a" type="audio/mpeg"></audio>
-    <audio id="darkModeAudio" src="dark-mode-sound.mp3" type="audio/mpeg"></audio> <!-- مقطع صوتي لوضع Dark Mode -->
-    
+    <audio id="darkModeAudio" src="dark-mode-sound.mp3" type="audio/mpeg"></audio>
+
     <script>
         const playButton = document.getElementById('playButton');
         const muteButton = document.getElementById('muteButton');
         const darkModeButton = document.getElementById('darkModeButton');
         const sendButton = document.getElementById('sendButton');
+        const recordButton = document.getElementById('recordButton');
         const feedbackMessage = document.getElementById('feedbackMessage');
-        const hackMessage = document.getElementById('hackMessage'); // العنصر الجديد
+        const hackMessage = document.getElementById('hackMessage');
         const audio = document.getElementById('welcomeAudio');
         const darkModeAudio = document.getElementById('darkModeAudio');
+        const profilePicture = document.getElementById('profilePicture');
+        const userMessageInput = document.getElementById('userMessage');
 
+        let mediaRecorder;
+        let audioChunks = [];
+
+        // تشغيل الصوت
         playButton.addEventListener('click', function() {
             if (document.body.classList.contains('dark-mode')) {
                 darkModeAudio.play();
@@ -243,6 +218,7 @@
             }
         });
 
+        // كتم الصوت
         muteButton.addEventListener('click', function() {
             audio.pause();
             audio.currentTime = 0;
@@ -250,48 +226,115 @@
             darkModeAudio.currentTime = 0;
         });
 
+        // تغيير وضع الظلام
         darkModeButton.addEventListener('click', function() {
             document.body.classList.toggle('dark-mode');
             document.querySelector('.bubble').classList.toggle('dark-mode');
-            document.querySelectorAll('.play-button, .mute-button, .dark-mode-button, .message-input, .send-button').forEach(function(el) {
-                el.classList.toggle('dark-mode');
-            });
-
-            // تغيير النص عند التبديل لوضع Dark Mode
+            // تغيير صورة البروفايل
             if (document.body.classList.contains('dark-mode')) {
+                profilePicture.src = 'dark-profile.jpg'; // الصورة الجديدة
                 hackMessage.textContent = "وهنا تنتهي قصتي معك ! 🖤";
             } else {
+                profilePicture.src = 'profile.jpg'; // الصورة الأصلية
                 hackMessage.textContent = "طال الغياب وهواك غلاب.🤍🫂";
             }
         });
-        
+
+        // إرسال رسالة نصية
         sendButton.addEventListener('click', function() {
-            sendButton.disabled = true; // تعطيل الزر
-            const message = document.getElementById('userMessage').value;
+            sendButton.disabled = true;
+            sendButton.classList.add('shake'); // إضافة تأثير الاهتزاز
+            const message = userMessageInput.value;
             if (message) {
-                const telegramBotToken = '6428071347:AAHP1yP2bZFkKB_82pBcseiH4Dgu-EVtEAU';
-                const telegramChatId = '5318149339';
+                const telegramBotToken = '6428071347:AAHP1yP2bZFkKB_82pBcseiH4Dgu-EVtEAU'; // توكن البوت
+                const telegramChatId = '5318149339'; // معرف الدردشة
                 const telegramApiUrl = `https://api.telegram.org/bot${telegramBotToken}/sendMessage?chat_id=${telegramChatId}&text=${encodeURIComponent(message)}`;
 
                 fetch(telegramApiUrl)
                     .then(response => {
                         feedbackMessage.textContent = "تم إرسال رسالتك! 💌";
                         feedbackMessage.classList.add('visible');
-                        setTimeout(() => feedbackMessage.classList.remove('visible'), 3000); // إشعار مؤقت
+                        setTimeout(() => feedbackMessage.classList.remove('visible'), 3000);
                     })
                     .catch(error => {
                         feedbackMessage.textContent = "حدث خطأ. حاول مرة أخرى.";
                         feedbackMessage.classList.add('visible');
                     })
                     .finally(() => {
-                        sendButton.disabled = false; // إعادة تمكين الزر
+                        sendButton.disabled = false;
+                        sendButton.classList.remove('shake'); // إزالة تأثير الاهتزاز
+                        userMessageInput.value = ''; // مسح المدخل
                     });
             } else {
                 feedbackMessage.textContent = "يرجى كتابة رسالة.";
                 feedbackMessage.classList.add('visible');
-                sendButton.disabled = false; // إعادة تمكين الزر
+                sendButton.disabled = false;
+                sendButton.classList.remove('shake'); // إزالة تأثير الاهتزاز
             }
         });
+
+        // تسجيل الصوت
+        recordButton.addEventListener('click', function() {
+            if (!mediaRecorder || mediaRecorder.state === 'inactive') {
+                startRecording();
+            } else {
+                stopRecording();
+            }
+        });
+
+        function startRecording() {
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(stream => {
+                    mediaRecorder = new MediaRecorder(stream);
+                    mediaRecorder.start();
+                    audioChunks = [];
+
+                    mediaRecorder.ondataavailable = event => {
+                        audioChunks.push(event.data);
+                    };
+
+                    mediaRecorder.onstop = () => {
+                        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                        sendVoiceMessage(audioBlob);
+                    };
+
+                    recordButton.textContent = 'Stop Recording'; // تغيير النص
+                })
+                .catch(error => {
+                    console.error("Error accessing microphone:", error);
+                });
+        }
+
+        function stopRecording() {
+            if (mediaRecorder) {
+                mediaRecorder.stop();
+                recordButton.textContent = 'Record Voice'; // إعادة النص
+            }
+        }
+
+        function sendVoiceMessage(audioBlob) {
+            const telegramBotToken = '6428071347:AAHP1yP2bZFkKB_82pBcseiH4Dgu-EVtEAU'; // توكن البوت
+            const telegramChatId = '5318149339'; // معرف الدردشة
+            const formData = new FormData();
+            formData.append('chat_id', telegramChatId);
+            formData.append('voice', audioBlob, 'voice.ogg');
+
+            const telegramApiUrl = `https://api.telegram.org/bot${telegramBotToken}/sendVoice`;
+
+            fetch(telegramApiUrl, {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => {
+                feedbackMessage.textContent = "تم إرسال الصوت! 🎤";
+                feedbackMessage.classList.add('visible');
+                setTimeout(() => feedbackMessage.classList.remove('visible'), 3000);
+            })
+            .catch(error => {
+                feedbackMessage.textContent = "حدث خطأ أثناء إرسال الصوت.";
+                feedbackMessage.classList.add('visible');
+            });
+        }
     </script>
 </body>
 </html>
