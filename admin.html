@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Card</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans', sans-serif;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            display: grid;
+            place-items: center;
+            background: linear-gradient(145deg, #1c1c1c, #3a3a3a);
+        }
+
+        .card {
+            color: #fff;
+            width: 400px;
+            border-radius: 15px;
+            background: #000;
+            box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.5), -15px -15px 30px rgba(255, 255, 255, 0.1);
+            border: none;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card img {
+            border: 4px solid #fff;
+            transition: border-color 0.3s ease;
+        }
+
+        .card img:hover {
+            border-color: #666;
+        }
+
+        .neo-button {
+            width: 45px;
+            height: 45px;
+            outline: 0 !important;
+            cursor: pointer;
+            color: #fff;
+            font-size: 18px;
+            border: none;
+            margin-right: 10px;
+            border-radius: 50%;
+            background: #333;
+            box-shadow: inset 10px 10px 20px rgba(0, 0, 0, 0.5), inset -10px -10px 20px rgba(255, 255, 255, 0.1);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .neo-button:active {
+            background: #444;
+            box-shadow: inset 20px 20px 40px rgba(0, 0, 0, 0.6), inset -20px -20px 40px rgba(255, 255, 255, 0.2);
+        }
+
+        .num {
+            color: #ccc !important;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .line {
+            border: 1px solid #fff;
+            margin: 20px 0;
+        }
+
+        .social-buttons .neo-button {
+            transition: transform 0.3s ease;
+        }
+
+        .social-buttons .neo-button:hover {
+            transform: scale(1.1);
+        }
+
+        .fa-facebook {
+            color: #3b5998;
+        }
+
+        .fa-linkedin {
+            color: #0077b5;
+        }
+
+        .fa-google {
+            color: #dc4e41;
+        }
+
+        .fa-youtube {
+            color: #cd201f;
+        }
+
+        .fa-twitter {
+            color: #55acee;
+        }
+
+        .profile_button {
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            outline: 0 !important;
+            border-radius: 25px;
+            background: #444;
+            box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.5), -15px -15px 30px rgba(255, 255, 255, 0.1);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile_button:hover {
+            background: #555;
+            box-shadow: 20px 20px 40px rgba(0, 0, 0, 0.6), -20px -20px 40px rgba(255, 255, 255, 0.2);
+        }
+
+        .message-box {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .message-box textarea {
+            width: 100%;
+            border-radius: 10px;
+            padding: 10px;
+            border: 1px solid #444;
+            background-color: #222;
+            color: #fff;
+            resize: none;
+        }
+
+        .message-box button {
+            margin-top: 10px;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            background-color: #555;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .message-box button:hover {
+            background-color: #666;
+        }
+
+        .message-box .confirmation-message {
+            display: none;
+            color: #4caf50;
+            margin-bottom: 10px;
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container d-flex justify-content-center">
+        <div class="card p-3 py-4">
+            <div class="text-center"> 
+                <img src="5956341649632249330.jpg" width="100" class="rounded-circle">
+                <h3 class="mt-2">𝐂𝐑𝐄𝐒𝐏𝐎..🥷</h3>
+                <span class="mt-1 clearfix">🇵🇸🩸</span>
+                
+                <div class="row mt-3 mb-3">
+                    <div class="col-md-4">
+                        <h5>Projects</h5>
+                        <span class="num">10</span>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Followers</h5>
+                        <span class="num">10K</span>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Following</h5>
+                        <span class="num">6</span>
+                    </div>
+                </div>
+                
+                <hr class="line">
+                
+                <small class="mt-4">𝑻𝑯𝑬 𝑭𝑨𝑴𝑶𝑼𝑺 𝑳𝑰𝑵𝑬 "𝑰𝑭 𝑼 𝑪𝑨𝑵𝑻 𝑩𝑬𝑨𝑻 𝑻𝑯𝑬𝑴, 𝑱𝑶𝑰𝑵 𝑻𝑯𝑬𝑴..🕴🦅</small>
+                <div class="social-buttons mt-5"> 
+                    <a href="https://www.facebook.com/" target="_blank">
+                        <button class="neo-button"><i class="fa fa-facebook fa-1x"></i></button>
+                    </a>
+                    <a href="https://www.linkedin.com/" target="_blank">
+                        <button class="neo-button"><i class="fa fa-linkedin fa-1x"></i></button>
+                    </a>
+                    <a href="https://www.google.com/" target="_blank">
+                        <button class="neo-button"><i class="fa fa-google fa-1x"></i></button>
+                    </a>
+                    <a href="https://www.youtube.com/" target="_blank">
+                        <button class="neo-button"><i class="fa fa-youtube fa-1x"></i></button>
+                    </a>
+                    <a href="https://www.twitter.com/" target="_blank">
+                        <button class="neo-button"><i class="fa fa-twitter fa-1x"></i></button>
+                    </a>
+                </div>
+                
+                <div class="profile mt-5">
+                    <button class="profile_button px-5" id="contactAdminBtn">Contact Admin</button>
+                </div>
+                
+                <div class="message-box" id="messageBox">
+                    <div class="confirmation-message" id="confirmationMessage">Message sent successfully!</div>
+                    <textarea id="messageText" rows="4" placeholder="Type your message here..."></textarea>
+                    <button id="sendMessageBtn">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#contactAdminBtn').click(function() {
+                $('#confirmationMessage').hide();
+                $('#messageBox').slideToggle();
+            });
+
+            $('#sendMessageBtn').click(function() {
+                var message = $('#messageText').val();
+                if (message) {
+                    $.ajax({
+                        url: 'https://api.telegram.org/bot6428071347:AAHP1yP2bZFkKB_82pBcseiH4Dgu-EVtEAU/sendMessage',
+                        method: 'POST',
+                        data: {
+                            chat_id: '5318149339',
+                            text: message
+                        },
+                        success: function() {
+                            $('#messageText').val("");
+                            $('#confirmationMessage').fadeIn().delay(3000).fadeOut();
+                        },
+                        error: function() {
+                            alert("Failed to send the message. Please try again later.");
+                        }
+                    });
+                } else {
+                    alert("Please enter a message.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
