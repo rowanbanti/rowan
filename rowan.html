@@ -33,24 +33,23 @@
 
         .bubble {
             background-color: rgba(255, 255, 255, 0.1);
-            padding: 50px;
+            padding: 40px 30px;
             border-radius: 30px;
             border: 2px solid rgba(255, 255, 255, 0.5);
             display: flex;
             flex-direction: column;
             align-items: center;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(15px);
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
             animation: fadeIn 2s ease-in-out, moveUpDown 4s ease-in-out infinite;
             max-width: 400px;
-            position: relative;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             filter: none;
         }
 
         .bubble:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 40px rgba(255, 255, 255, 0.7);
+            box-shadow: 0 0 35px rgba(255, 255, 255, 0.7);
         }
 
         @keyframes moveUpDown {
@@ -59,13 +58,12 @@
         }
 
         .profile-picture {
-            width: 110px;
-            height: 110px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             margin-bottom: 20px;
             animation: zoomIn 1s ease-in-out;
             border: 2px solid #FFF;
-            position: relative;
             filter: none;
         }
 
@@ -104,21 +102,20 @@
 
         @keyframes backgroundAnimation {
             from { filter: hue-rotate(0deg); }
-            to { filter: hue-rotate(0deg); }
+            to { filter: hue-rotate(10deg); }
         }
 
         .play-button, .mute-button, .dark-mode-button {
-            padding: 15px 30px;
+            padding: 12px 25px;
             background: linear-gradient(45deg, #ff4081, #ff80ab);
             color: #FFF;
             border: none;
-            border-radius: 30px;
+            border-radius: 25px;
             box-shadow: 0 4px 15px rgba(255, 64, 129, 0.4);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             margin-bottom: 10px;
-            filter: none;
         }
 
         .play-button:hover, .mute-button:hover, .dark-mode-button:hover {
@@ -128,7 +125,7 @@
 
         .message-input {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin-bottom: 15px;
             border-radius: 20px;
             border: 2px solid rgba(255, 255, 255, 0.5);
@@ -140,7 +137,7 @@
         }
 
         .send-button {
-            padding: 10px 20px;
+            padding: 12px 25px;
             background-color: transparent;
             color: #ff4081;
             border: 2px solid #ff4081;
@@ -171,7 +168,7 @@
         body.dark-mode {
             background-color: #121212;
             color: #e0e0e0;
-            background-image: url('dark-background.jpg'); /* خلفية Dark Mode */
+            background-image: url('dark-background.jpg');
             background-size: cover;
             background-position: center;
         }
@@ -231,7 +228,7 @@
         const darkModeButton = document.getElementById('darkModeButton');
         const sendButton = document.getElementById('sendButton');
         const feedbackMessage = document.getElementById('feedbackMessage');
-        const hackMessage = document.getElementById('hackMessage'); // العنصر الجديد
+        const hackMessage = document.getElementById('hackMessage'); 
         const audio = document.getElementById('welcomeAudio');
         const darkModeAudio = document.getElementById('darkModeAudio');
 
@@ -251,24 +248,23 @@
         });
 
         darkModeButton.addEventListener('click', function() {
-    document.body.classList.toggle('dark-mode');
-    document.querySelector('.bubble').classList.toggle('dark-mode');
-    document.querySelectorAll('.play-button, .mute-button, .dark-mode-button, .message-input, .send-button').forEach(function(el) {
-        el.classList.toggle('dark-mode');
-    });
+            document.body.classList.toggle('dark-mode');
+            document.querySelector('.bubble').classList.toggle('dark-mode');
+            document.querySelectorAll('.play-button, .mute-button, .dark-mode-button, .message-input, .send-button').forEach(function(el) {
+                el.classList.toggle('dark-mode');
+            });
 
-    // تغيير النص عند التبديل لوضع Dark Mode
-    if (document.body.classList.contains('dark-mode')) {
-        hackMessage.textContent = "وهنا تنتهي قصتي معك ! 🖤";
-        document.querySelector('.profile-picture').src = 'dark-profile.jpg'; // تغيير صورة البروفايل
-    } else {
-        hackMessage.textContent = "طال الغياب وهواك غلاب.🤍🫂";
-        document.querySelector('.profile-picture').src = 'profile.jpg'; // استعادة صورة البروفايل الأصلية
-    }
-});
+            if (document.body.classList.contains('dark-mode')) {
+                hackMessage.textContent = "وهنا تنتهي قصتي معك ! 🖤";
+                document.querySelector('.profile-picture').src = 'dark-profile.jpg'; 
+            } else {
+                hackMessage.textContent = "طال الغياب وهواك غلاب.🤍🫂";
+                document.querySelector('.profile-picture').src = 'profile.jpg'; 
+            }
+        });
         
         sendButton.addEventListener('click', function() {
-            sendButton.disabled = true; // تعطيل الزر
+            sendButton.disabled = true; 
             const message = document.getElementById('userMessage').value;
             if (message) {
                 const telegramBotToken = '6428071347:AAHP1yP2bZFkKB_82pBcseiH4Dgu-EVtEAU';
@@ -279,19 +275,19 @@
                     .then(response => {
                         feedbackMessage.textContent = "تم إرسال رسالتك! 💌";
                         feedbackMessage.classList.add('visible');
-                        setTimeout(() => feedbackMessage.classList.remove('visible'), 3000); // إشعار مؤقت
+                        setTimeout(() => feedbackMessage.classList.remove('visible'), 3000); 
                     })
                     .catch(error => {
                         feedbackMessage.textContent = "حدث خطأ. حاول مرة أخرى.";
                         feedbackMessage.classList.add('visible');
                     })
                     .finally(() => {
-                        sendButton.disabled = false; // إعادة تمكين الزر
+                        sendButton.disabled = false; 
                     });
             } else {
                 feedbackMessage.textContent = "يرجى كتابة رسالة.";
                 feedbackMessage.classList.add('visible');
-                sendButton.disabled = false; // إعادة تمكين الزر
+                sendButton.disabled = false; 
             }
         });
     </script>
