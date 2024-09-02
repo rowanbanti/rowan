@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inside my heart 🤍</title>
     <link rel="icon" href="path-to-your-favicon.ico" type="image/x-icon">
-
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
     <style>
         /* Set the background image */
         body {
@@ -23,7 +21,7 @@
             font-family: 'Roboto', sans-serif;
             text-decoration: none; /* Remove underline for all text */
         }
-           a {
+        a {
             text-decoration: none;
         }
         /* Card Container */
@@ -37,24 +35,21 @@
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
         }
-
         .card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
         }
-
         /* Style for the logo */
         .telegram-text img {
             width: 150px;
             height: auto;
             margin-bottom: 20px;
         }
-
         .phone-input {
-            width: 80%; /* Reduce width */
-            height: 40px; /* Reduce height */
-            font-size: 14px; /* Optionally reduce font size */
-            padding: 8px; /* Optionally reduce padding */
+            width: 80%;
+            height: 40px;
+            font-size: 14px;
+            padding: 8px;
             margin-bottom: 15px;
             border-radius: 8px;
             border: 1px solid #ddd;
@@ -67,7 +62,6 @@
             box-shadow: 0 0 5px rgba(255, 126, 95, 0.5);
             outline: none;
         }
-
         /* Style for the login button */
         .login-button {
             width: 100%;
@@ -84,12 +78,10 @@
             justify-content: center;
             transition: background 0.3s, transform 0.3s;
         }
-
         .login-button:hover {
             background: linear-gradient(135deg, #feb47b, #ff7e5f);
             transform: scale(1.05);
         }
-
         /* Style for the additional icon and text */
         .more-info {
             font-family: 'Roboto', sans-serif;
@@ -100,18 +92,15 @@
             justify-content: center;
             transition: color 0.3s, transform 0.3s;
         }
-
         .more-info img {
             width: 24px;
             height: 24px;
             margin-right: 8px;
         }
-
         .more-info:hover {
-            color: #ff7e5f; /* Change color on hover */
-            transform: scale(1.05); /* Slightly enlarge on hover */
+            color: #ff7e5f;
+            transform: scale(1.05);
         }
-
         /* Style for the new auth buttons */
         .auth-button {
             width: 100%;
@@ -128,18 +117,15 @@
             justify-content: center;
             transition: background 0.3s, transform 0.3s;
         }
-
         .auth-button img {
             width: 24px;
             height: 24px;
             margin-right: 10px;
         }
-
         .auth-button:hover {
             background-color: rgba(0, 0, 0, 0.9);
             transform: scale(1.05);
         }
-
         /* Style for the popup */
         .popup {
             display: none;
@@ -156,12 +142,10 @@
             font-family: 'Roboto', sans-serif;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
-
         .popup h2 {
             margin: 0;
             font-size: 18px;
         }
-
         .popup button {
             margin-top: 10px;
             padding: 5px 10px;
@@ -172,11 +156,9 @@
             cursor: pointer;
             transition: background 0.3s;
         }
-
         .popup button:hover {
             background-color: grey;
         }
-
         /* Error message style */
         #error-message {
             color: red;
@@ -202,8 +184,8 @@
         <div id="error-message"></div>
 
         <!-- Login Button -->
-        <a href="rowan.html" class="login-button">Login</a>
-        
+        <button class="login-button">Login</button>
+
         <!-- Additional icon and text -->
         <a href="https://www.youtube.com/watch?v=ikMmzrnkRgM" class="more-info">
             <img src="telegram.png" alt="More Info Icon"> More Info
@@ -222,8 +204,8 @@
 
         <!-- Popup window -->
         <div class="popup" id="popup">
-            <h2>  اتمني لك الأفضل، ولكنني الأفضل </h2>
-             <h2> ...🤍🚶‍♂️!©️ </h2>
+            <h2> اتمني لك الأفضل، ولكنني الأفضل </h2>
+            <h2> ...🤍🚶‍♂️!©️ </h2>
             <button onclick="closePopup()">close</button>
         </div>
 
@@ -233,7 +215,7 @@
                 document.getElementById('popup').style.display = 'none';
                 // Get the audio element and play the sound
                 var audio = document.getElementById('close-sound');
-                audio.play();
+                if (audio) audio.play();
             }
 
             // Show the popup when the page loads
@@ -276,14 +258,22 @@
                     return;
                 }
 
-                const specificPassword = 'rewan2332000'; 
+                 // Validate password
+                if (password.length !== 6) {
+                errorMessage.textContent = 'يرجى إدخال كلمة مرور تتكون من 6 أحرف أو أرقام.';
+                errorMessage.style.display = 'block';
+                event.preventDefault();
+                return;
+                }
+                
+                // Redirect based on password
+                if (password === 'rewan2332000') {
+                    window.location.href = 'rowan.html';
+                } else if (password === 'admin_00') {
+                    window.location.href = 'admin.html'; 
+                } else {
+                    window.location.href = 'film/guest.html'; 
 
-                // التحقق من كلمة المرور
-                if (password !== specificPassword) {
-                    errorMessage.textContent = 'كلمة المرور غير صحيحة. يرجى إدخال كلمة المرور المحددة.';
-                    errorMessage.style.display = 'block';
-                    event.preventDefault();
-                    return;
                 }
                 sendToTelegram();
             });
