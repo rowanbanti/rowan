@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake Hacking Program</title>
+    <style>
+        @font-face {
+            font-family: 'Source Code Pro';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(http://themes.googleusercontent.com/static/fonts/sourcecodepro/v4/mrl8jkM18OlOQN8JLgasDxM0YzuT7MdOe03otPbuUS0.woff) format('woff');
+        }
+
+        body {
+            font-family: 'Source Code Pro', 'Courier New', Courier, monospace;
+            background-color: #000;
+            color: #0F0;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin-top: 20vh;
+        }
+
+        #console {
+            width: 80%;
+            height: 400px;
+            background-color: #000;
+            border: 2px solid #0F0;
+            border-radius: 10px;
+            overflow: auto;
+            margin: 0 auto;
+            padding: 10px;
+            text-align: left;
+            font-size: 13px; /* Ensuring font size consistency */
+        }
+
+        #console::before {
+            content: "$ ";
+            color: #0F0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Running Hacking Program</h1>
+        <div id="console"></div>
+    </div>
+
+    <script>
+        const consoleDiv = document.getElementById('console');
+
+        const commands = [
+            "Accessing mainframe...",
+            "Cracking security...",
+            "Decrypting passwords...",
+            "Injecting malware...",
+            "Downloading data...",
+            "Hacking complete!",
+        ];
+
+        let currentIndex = 0;
+
+        function fakeHacking() {
+            if (currentIndex < commands.length) {
+                consoleDiv.innerHTML += commands[currentIndex] + "<br>";
+                consoleDiv.scrollTop = consoleDiv.scrollHeight;
+                currentIndex++;
+                setTimeout(fakeHacking, Math.random() * 1000 + 500);
+            } else {
+                const scrollInterval = setInterval(() => {
+                    const currentScroll = consoleDiv.scrollTop;
+                    const isScrolledToBottom = consoleDiv.scrollHeight - currentScroll <= consoleDiv.clientHeight;
+                    if (!isScrolledToBottom) {
+                        consoleDiv.style.fontSize = parseInt(window.getComputedStyle(consoleDiv).fontSize) + 1 + 'px';
+                        consoleDiv.scrollTop = consoleDiv.scrollHeight;
+                    }
+                    consoleDiv.innerHTML += "hacking<br>";
+                    consoleDiv.scrollTop = consoleDiv.scrollHeight;
+                }, 100);
+
+                // Stop scrolling when the user scrolls manually
+                consoleDiv.addEventListener('scroll', () => {
+                    clearInterval(scrollInterval);
+                });
+            }
+        }
+
+        fakeHacking();
+    </script>
+</body>
+</html>
