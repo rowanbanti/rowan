@@ -1,65 +1,47 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- هذه السطر يضمن تناسب الصفحة مع شاشة الهاتف -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <style>
-        body {
-            background-color: #FAB259;
-            font-family: monospace;
-        }
+    body {
+        background-color: #FAB259;
+        font-family: monospace;
+        margin: 0; /* إزالة الهامش الافتراضي للمتصفح */
+        padding: 0;
+    }
+    .container {
+        background-color: #FCF5F3;
+        width: 90%; /* استخدام نسبة مئوية بدلاً من قيمة ثابتة */
+        max-width: 1200px;
+        position: relative; /* تغيير من absolute إلى relative لتسهيل التوافق */
+        margin: 20px auto; /* استخدام الهامش بدلاً من التمركز المطلق */
+        border-radius: 30px;
+        min-height: 70vh;
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr; /* توزيع النسب المرنة للأعمدة */
+        gap: 10px; /* إضافة فراغات بين الأعمدة */
+    }
 
+    @media (max-width: 768px) { /* للأجهزة اللوحية */
         .container {
-            background-color: #FCF5F3;
-            width: 100%;
-            max-width: 1200px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border-radius: 30px;
-            min-height: 70vh;
-            overflow: hidden;
-            display: grid;
-            grid-template-columns: 100px auto 300px;
+            grid-template-columns: 1fr; /* تغيير التصميم إلى عمود واحد */
+        }
+    }
+
+    @media (max-width: 480px) { /* للهواتف المحمولة */
+        .container {
+            grid-template-columns: 1fr; /* تحويل جميع الأعمدة إلى عمود واحد */
+            width: 95%;
         }
 
-        .right {
-            background-color: #F3EBE2;
-        }
-
-        .left {
-            text-align: center;
-            border-right: 1px solid #F3EBE2;
-        }
-
-        .left ul {
-            padding: 0;
-            list-style: none;
-        }
-
-        .left ul li i {
-            display: block;
-            margin-bottom: 10px;
-            transition: transform 0.3s ease, color 0.3s ease;
-        }
-
-        .left li {
-            padding: 20px 0;
-            color: #c4beb7;
-        }
-
-        .left li.active {
-            color: #000;
-        }
-
-        .left ul li:hover i {
-            transform: scale(1.2);
-            color: #FF6652;
+        .left ul li {
+            padding: 10px 0; /* تصغير الهوامش لتناسب الشاشات الصغيرة */
         }
 
         .center {
@@ -67,9 +49,7 @@
         }
 
         .bigTitle {
-            font-size: xx-large;
-            font-weight: bold;
-            margin: 20px 0;
+            font-size: 1.5rem; /* تقليل حجم الخط للعناوين */
         }
 
         .banner {
@@ -78,7 +58,7 @@
 
         .banner img {
             width: 100%;
-            border-radius: 30px;
+            border-radius: 20px;
             box-shadow: 0 20px 50px #b5b5b5;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -120,11 +100,7 @@
         }
 
         .category {
-            list-style: none;
-            padding: 0;
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 10px;
+            grid-template-columns: repeat(3, 1fr); /* تقليل عدد الأعمدة */
         }
 
         .category li {
@@ -177,9 +153,7 @@
         }
 
         .listFigure .item {
-            display: grid;
-            grid-template-columns: 30% 70%;
-            gap: 20px;
+            grid-template-columns: 1fr; /* تحويل العناصر إلى عمود واحد */
         }
 
         .listFigure .item img {
@@ -247,9 +221,7 @@
         }
 
         .actor ul {
-            padding: 0;
-            list-style: none;
-            margin: 0;
+            grid-template-columns: 1fr; /* ترتيب العناصر في عمود واحد */
         }
 
         .actor li {
