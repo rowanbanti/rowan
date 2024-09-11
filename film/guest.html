@@ -120,6 +120,12 @@
             margin: 0 auto 5px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+        .link-style {
+            color: inherit; /* الاحتفاظ بلون النص الأصلي */
+            text-decoration: none; /* إزالة الخط السفلي */
+            display: flex; /* لجعل الأيقونة والنص في نفس السطر */
+            align-items: center; /* محاذاة الأيقونة والنص عموديًا */
+        }
 
         .category li:hover i {
             transform: scale(1.2);
@@ -360,13 +366,6 @@
 
         .delay-24 {
             animation-delay: 2.4s !important;
-        }
-        
-        .link-style {
-            color: inherit; /* الاحتفاظ بلون النص الأصلي */
-            text-decoration: none; /* إزالة الخط السفلي */
-            display: flex; /* لجعل الأيقونة والنص في نفس السطر */
-            align-items: center; /* محاذاة الأيقونة والنص عموديًا */
         }
         
     </style>
